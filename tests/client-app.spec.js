@@ -54,7 +54,7 @@ test("Browser context validating error login", async ({ page }) => {
   await page.locator("tbody").waitFor();
   const rows = await page.locator("tbody tr");
   for (let i = 0; i < (await rows.count()); ++i) {
-    const rowOrderId = rows.nth(i).locator("th").textContent();
+    const rowOrderId = await rows.nth(i).locator("th").textContent();
     if (orderId.includes(rowOrderId)) {
       await rows.nth(i).locator("button").first().click();
       break;
