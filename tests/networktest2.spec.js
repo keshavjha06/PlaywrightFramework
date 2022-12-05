@@ -1,8 +1,8 @@
 const { test, expect, request } = require("@playwright/test");
 const { apiutils } = require("./utils/apiutils");
 const loginPayload = {
-  userEmail: "anshika@gmail.com",
-  userPassword: "Iamking@000",
+  userEmail: "rahulshetty@gmail.com",
+  userPassword: "Iamking@00",
 };
 const orderPayload = {
   orders: [{ country: "Cuba", productOrderedId: "6262e95ae26b7e1a10e89bf0" }],
@@ -20,18 +20,13 @@ test("place the order", async ({ page }) => {
     window.localStorage.setItem("token", value);
   }, response.token);
   await page.goto("https://rahulshettyacademy.com/client");
-  await page.route(
-    "https://rahulshettyacademy.com/api/ecom/order/get-orders-for-customer/620c7bf148767f1f1215d2ca",
-    async (route) => {
-      const response = await page.request.fetch(route.request());
-      let body = fakePayLoadOrders;
-      route.fulfill({
-        response,
-        body,
-      });
-      //intercepting response-API response->{playwright fakeresponse}->browser->render data on frontend
-    }
-  );
   await page.locator("button[routerlink*='myorders']").click();
-  console.log(await page.locator(".mt-4").textContent());
+  await page.route(
+    "https://www.rahulshettyacademy.com/api/ecom/order/get-orders-details?id=638cc34e03841e9c9a4a0644",
+    (route) =>
+      route.continue({
+        url: "https://rahulshettyacademy.com/api/ecom/order/get-orders-details?id=638e23ea03841e9c9a4ad11e",
+      })
+  );
+  await page.locator("button:has-text('View')").first().click();
 });
