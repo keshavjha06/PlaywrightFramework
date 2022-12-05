@@ -1,4 +1,5 @@
 const { test, expect, request } = require("@playwright/test");
+const { apiutils } = require("./utils/apiutils");
 const loginPayload = {
   userEmail: "anshika@gmail.com",
   userPassword: "Iamking@000",
@@ -6,13 +7,13 @@ const loginPayload = {
 const orderPayload = {
   orders: [{ country: "Cuba", productOrderedId: "6262e95ae26b7e1a10e89bf0" }],
 };
-const { apiutils } = require("./utils/apiutils");
 let response;
 test.beforeAll(async () => {
   const apiContext = await request.newContext();
   const apiUtils = new apiutils(apiContext, loginPayload);
   response = await apiUtils.createOrder(orderPayload);
 });
+//create order is success
 test("place the order", async ({ page }) => {
   page.addInitScript((value) => {
     window.localStorage.setItem("token", value);
@@ -29,7 +30,6 @@ test("place the order", async ({ page }) => {
     }
   }
   const orderIdDetails = await page.locator(".col-text").textContent();
-  await page.pause();
   expect(response.orderId.includes(orderIdDetails)).toBeTruthy();
 });
 
