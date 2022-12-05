@@ -29,4 +29,5 @@ test("place the order", async ({ page }) => {
       })
   );
   await page.locator("button:has-text('View')").first().click();
+  //await page.pause();
 });
