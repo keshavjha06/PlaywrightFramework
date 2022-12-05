@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test tests/webapi-part1.spec.js --headed"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/keshavjha06/PlaywrightFramework.git"
