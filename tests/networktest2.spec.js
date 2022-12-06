@@ -1,5 +1,5 @@
 const { test, expect, request } = require("@playwright/test");
-const { apiutils } = require("./utils/apiutils");
+const { ApiUtils } = require("../utils/apiutils");
 const loginPayload = {
   userEmail: "rahulshetty@gmail.com",
   userPassword: "Iamking@00",
@@ -11,7 +11,7 @@ const fakePayLoadOrders = { data: [], message: "No Orders" };
 let response;
 test.beforeAll(async () => {
   const apiContext = await request.newContext();
-  const apiUtils = new apiutils(apiContext, loginPayload);
+  const apiUtils = new ApiUtils(apiContext, loginPayload);
   response = await apiUtils.createOrder(orderPayload);
 });
 //create order is success
