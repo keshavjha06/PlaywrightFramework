@@ -1,6 +1,6 @@
 const { test, expect } = require("@playwright/test");
 
-test("Browser context validating error login", async ({ page }) => {
+test.skip("client app login", async ({ page }) => {
   const email = "anshika@gmail.com";
   const productName = "zara coat 3";
   const products = page.locator(".card-body");

@@ -1,6 +1,6 @@
 const { test, expect } = require("@playwright/test");
 
-test("browser context playwright test", async ({ browser }) => {
+test("@web browser context playwright test", async ({ browser }) => {
   const context = await browser.newContext();
   const page = await context.newPage();
   page.route("**/*.css", (route) => route.abort());
@@ -39,7 +39,7 @@ test("page context playwright test", async ({ page }) => {
   await expect(page).toHaveTitle("Google");
 });
 
-test("UI controls", async ({ page }) => {
+test("@web UI controls", async ({ page }) => {
   await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
   const userName = page.locator("#username");
   const signIn = page.locator("#signInBtn");

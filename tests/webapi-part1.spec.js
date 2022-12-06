@@ -14,7 +14,7 @@ test.beforeAll(async () => {
   response = await apiUtils.createOrder(orderPayload);
 });
 //create order is success
-test("place the order", async ({ page }) => {
+test("@API place the order", async ({ page }) => {
   page.addInitScript((value) => {
     window.localStorage.setItem("token", value);
   }, response.token);

@@ -69,7 +69,7 @@ test("Client App login", async () => {
   expect(orderId.includes(orderIdDetails)).toBeTruthy();
 });
 
-test("Test case 2", async () => {
+test("@API Test case 2", async () => {
   const email = "";
   const productName = "zara coat 3";
   const page = await webContext.newPage();
