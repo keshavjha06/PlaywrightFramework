@@ -1,8 +1,8 @@
-const { LoginPage } = require("./LoginPage");
-const { DashboardPage } = require("./DashboardPage");
-const { OrdersHistoryPage } = require("./OrdersHistoryPage");
-const { OrdersReviewPage } = require("./OrdersReviewPage");
-const { CartPage } = require("./CartPage");
+const { LoginPage } = require("./login-page");
+const { DashboardPage } = require("./dashboard-page");
+const { OrdersHistoryPage } = require("./ordershistory-page");
+const { OrdersReviewPage } = require("./orderreviews-page");
+const { CartPage } = require("./cart-page");
 class POManager {
   constructor(page) {
     this.page = page;
