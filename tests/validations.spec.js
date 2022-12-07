@@ -30,7 +30,7 @@ test("Screenshot & Visual comparision", async ({ page }) => {
   await expect(page.locator("#displayed-text")).toBeHidden();
 });
 //screenshot -store -> screenshot ->
-test.only("visual", async ({ page }) => {
+test("visual", async ({ page }) => {
   //make payment -when you 0 balance
   await page.goto("https://google.com/");
   expect(await page.screenshot()).toMatchSnapshot("landing.png");
