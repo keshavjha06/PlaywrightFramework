@@ -6,3 +6,5 @@ node_modules/
 *.png
 *.jpg
 *.jpeg
+/allure-results/
+/allure-report/
