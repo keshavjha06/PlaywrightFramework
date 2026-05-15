@@ -3,11 +3,11 @@ import "dotenv/config";
 
 const BASE_URL = "https://eventhub.rahulshettyacademy.com";
 
-// ── Credentials ──
+// Credentials
 const USER_EMAIL = process.env.USER_EMAIL;
 const USER_PASSWORD = process.env.USER_PASSWORD;
 
-// ── Helpers ──
+//  Helpers
 
 /**
  * Reusable login helper — navigates to /login, fills credentials, clicks login,
@@ -35,14 +35,13 @@ function futureDateValue() {
   return `${yyyy}-${mm}-${dd}T18:00`;
 }
 
-// ── Test ──
-
+// Test
 test("EventHub — create event, book ticket, verify seat count drops by 1", async ({ page }) => {
 
-  // ── Step 1: Login ──
+  //  Step 1: Login
   await login(page);
 
-  // ── Step 2: Create a new event ──
+  //  Step 2: Create a new event
   await page.goto(`${BASE_URL}/admin/events`);
 
   const eventTitle = `Test Event ${Date.now()}`;
@@ -59,7 +58,7 @@ test("EventHub — create event, book ticket, verify seat count drops by 1", asy
   // Assert toast confirmation
   await expect(page.getByText("Event created!")).toBeVisible();
 
-  // ── Step 3: Find the event card & capture seats ──
+  //  Step 3: Find the event card & capture seats
   await page.goto(`${BASE_URL}/events`);
 
   const allCards = page.locator("[data-testid='event-card']");
@@ -73,23 +72,23 @@ test("EventHub — create event, book ticket, verify seat count drops by 1", asy
   const seatsBeforeBooking = parseInt(seatText.match(/\d+/)[0], 10);
   console.log(`Seats before booking: ${seatsBeforeBooking}`);
 
-  // ── Step 4: Start booking ──
+  //  Step 4: Start booking
   await matchedCard.locator("[data-testid='book-now-btn']").click();
 
-  // ── Step 5: Fill booking form ──
+  //  Step 5: Fill booking form
   await expect(page.locator("#ticket-count")).toHaveText("1");
   await page.getByLabel("Full Name").fill("Test User");
   await page.locator("#customer-email").fill(USER_EMAIL);
   await page.getByPlaceholder("+91 98765 43210").fill("9876543210");
   await page.locator(".confirm-booking-btn").click();
 
-  // ── Step 6: Verify booking confirmation ──
+  //  Step 6: Verify booking confirmation
   const bookingRefElement = page.locator(".booking-ref").first();
   await expect(bookingRefElement).toBeVisible();
   const bookingRef = (await bookingRefElement.innerText()).trim();
   console.log(`Booking reference: ${bookingRef}`);
 
-  // ── Step 7: Verify in My Bookings ──
+  //  Step 7: Verify in My Bookings
   await page.getByRole("link", { name: "View My Bookings" }).click();
   await expect(page).toHaveURL(`${BASE_URL}/bookings`);
 
@@ -102,7 +101,7 @@ test("EventHub — create event, book ticket, verify seat count drops by 1", asy
   await expect(matchedBooking).toBeVisible();
   await expect(matchedBooking).toContainText(eventTitle);
 
-  // ── Step 8: Verify seat reduction ──
+  //  Step 8: Verify seat reduction
   await page.goto(`${BASE_URL}/events`);
   await expect(allCards.first()).toBeVisible();
 

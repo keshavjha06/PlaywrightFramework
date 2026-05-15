@@ -3,7 +3,7 @@ import "dotenv/config";
 
 const BASE_URL = 'https://eventhub.rahulshettyacademy.com';
 
-// ── Credentials ──
+//  Credentials
 const USER_EMAIL = process.env.USER_EMAIL;
 const USER_PASSWORD = process.env.USER_PASSWORD;
 
@@ -15,7 +15,7 @@ async function loginAndGoToBooking(page) {
     await expect(page.getByRole("link", { name: "Browse Events →" })).toBeVisible();
 }
 
-// ── Test 1: 1 ticket → eligible ───────────────────────────────────────────────
+// Test 1: 1 ticket → eligible
 test('refund eligible for single ticket booking', async ({ page }) => {
     await loginAndGoToBooking(page);
 
@@ -55,7 +55,7 @@ test('refund eligible for single ticket booking', async ({ page }) => {
     await expect(result).toContainText('Single-ticket bookings qualify for a full refund');
 });
 
-// ── Test 2: 3 tickets → not eligible ─────────────────────────────────────────
+// Test 2: 3 tickets → not eligible
 test('refund not eligible for group ticket booking', async ({ page }) => {
     await loginAndGoToBooking(page);
 
