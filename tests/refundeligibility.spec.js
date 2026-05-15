@@ -7,12 +7,6 @@ const BASE_URL = 'https://eventhub.rahulshettyacademy.com';
 const USER_EMAIL = process.env.USER_EMAIL;
 const USER_PASSWORD = process.env.USER_PASSWORD;
 
-// ── Helpers ──
-
-/**
- * Reusable login helper — navigates to /login, fills credentials, clicks login,
- * and asserts that "Browse Events →" link is visible (confirms login success).
- */
 async function loginAndGoToBooking(page) {
     await page.goto(`${BASE_URL}/login`);
     await page.getByPlaceholder("you@email.com").fill(USER_EMAIL);
