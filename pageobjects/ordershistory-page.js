@@ -20,4 +20,4 @@ class OrdersHistoryPage {
     return await this.orderdIdDetails.textContent();
   }
 }
-module.exports = { OrdersHistoryPage };
+export default { OrdersHistoryPage };

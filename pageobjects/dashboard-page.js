@@ -30,4 +30,4 @@ class DashboardPage {
     await this.cart.click();
   }
 }
-module.exports = { DashboardPage };
+export default { DashboardPage };

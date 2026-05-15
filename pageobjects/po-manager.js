@@ -1,8 +1,8 @@
-const { LoginPage } = require("./login-page");
-const { DashboardPage } = require("./dashboard-page");
-const { OrdersHistoryPage } = require("./ordershistory-page");
-const { OrdersReviewPage } = require("./orderreviews-page");
-const { CartPage } = require("./cart-page");
+import { LoginPage } from "./login-page";
+import { DashboardPage } from "./dashboard-page";
+import { OrdersHistoryPage } from "./ordershistory-page";
+import { OrdersReviewPage } from "./orderreviews-page";
+import { CartPage } from "./cart-page";
 class POManager {
   constructor(page) {
     this.page = page;
@@ -32,4 +32,4 @@ class POManager {
     return this.ordersReviewPage;
   }
 }
-module.exports = { POManager };
+export default { POManager };
