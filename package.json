@@ -22,6 +22,7 @@
   "homepage": "https://github.com/keshavjha06/PlaywrightFramework#readme",
   "devDependencies": {
     "@playwright/test": "^1.59.1",
-    "allure-playwright": "^3.7.1"
+    "allure-playwright": "^3.7.1",
+    "dotenv": "^17.4.2"
   }
 }

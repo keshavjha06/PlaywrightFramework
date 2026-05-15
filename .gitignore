@@ -8,3 +8,4 @@ node_modules/
 *.jpeg
 /allure-results/
 /allure-report/
+.env
