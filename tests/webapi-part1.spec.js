@@ -1,5 +1,5 @@
-const { test, expect, request } = require("@playwright/test");
-const { ApiUtils } = require("../utils/apiutils");
+import { test, expect, request } from "@playwright/test";
+import { ApiUtils } from "../utils/apiutils";
 const loginPayload = {
   userEmail: "anshika@gmail.com",
   userPassword: "Iamking@000",

@@ -1,7 +1,7 @@
-const { test, expect } = require("@playwright/test");
-const { customtest } = require("../utils/test-base");
+import { test, expect } from "@playwright/test";
+import { customtest } from "../utils/test-base";
 
-const { POManager } = require("../pageobjects/po-manager");
+import { POManager } from "../pageobjects/po-manager";
 //Json->string->js object
 const dataset = JSON.parse(
   JSON.stringify(require("../utils/placeorder-testdata.json"))

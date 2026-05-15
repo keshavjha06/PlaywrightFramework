@@ -1,4 +1,4 @@
-const base = require("@playwright/test");
+import base from "@playwright/test";
 
 exports.customtest = base.test.extend({
   testDataForOrder: {

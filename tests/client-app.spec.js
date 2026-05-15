@@ -1,4 +1,4 @@
-const { test, expect } = require("@playwright/test");
+import { test, expect } from "@playwright/test";
 
 test.skip("client app login", async ({ page }) => {
   const email = "anshika@gmail.com";
