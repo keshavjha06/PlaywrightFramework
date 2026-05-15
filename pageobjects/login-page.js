@@ -11,8 +11,8 @@ class LoginPage {
   }
 
   async validLogin(username, password) {
-    await this.userName.type(username);
-    await this.password.type(password);
+    await this.userName.fill(username);
+    await this.password.fill(password);
     await this.signInbutton.click();
     await this.page.waitForLoadState("networkidle");
   }

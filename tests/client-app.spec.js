@@ -27,7 +27,7 @@ test.skip("client app login", async ({ page }) => {
   const bool = await page.locator("h3:has-text('zara coat 3')").isVisible();
   expect(bool).toBeTruthy();
   await page.locator("text=Checkout").click();
-  await page.locator("[placeholder*='Country']").type("ind", { delay: 100 }); //will add delay while typing
+  await page.locator("[placeholder*='Country']").fill("ind", { delay: 100 }); //will add delay while typing
   const dropdown = page.locator(".ta-results");
   await dropdown.waitFor();
   let optionsCount = await dropdown.locator("button").count();

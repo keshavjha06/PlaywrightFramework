@@ -15,8 +15,8 @@ test("@web browser context playwright test", async ({ browser }) => {
   await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
   console.log(await page.title());
   //css
-  await userName.type("rahulshetty");
-  await page.locator("[type='password']").type("learning");
+  await userName.fill("rahulshetty");
+  await page.locator("[type='password']").fill("learning");
   await signIn.click();
   console.log(await page.locator("[style*='block']").textContent());
   await expect(page.locator("[style*='block']")).toContainText("Incorrect");
@@ -73,7 +73,7 @@ test("child windows handling", async ({ browser }) => {
   const arrayText = text.split("@");
   const domain = arrayText[1].split(" ")[0];
   console.log(domain);
-  await page.locator("#username").type(domain);
+  await page.locator("#username").fill(domain);
   //await page.pause();
   console.log(await page.locator("#username").textContent());
 });
