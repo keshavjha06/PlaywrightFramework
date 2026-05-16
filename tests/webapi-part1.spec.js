@@ -5,7 +5,7 @@ const loginPayload = {
   userPassword: "Iamking@000",
 };
 const orderPayload = {
-  orders: [{ country: "Cuba", productOrderedId: "6262e95ae26b7e1a10e89bf0" }],
+  orders: [{ country: "Cuba", productOrderedId: "6960eac0c941646b7a8b3e68" }],
 };
 let response;
 test.beforeAll(async () => {
@@ -13,11 +13,12 @@ test.beforeAll(async () => {
   const apiUtils = new ApiUtils(apiContext, loginPayload);
   response = await apiUtils.createOrder(orderPayload);
 });
+
 //create order is success
 test("@API place the order", async ({ page }) => {
   page.addInitScript((value) => {
     window.localStorage.setItem("token", value);
-  }, response.token);
+  }, response.token); // setting the token value in localstorage so that the page considers as logged in user
   await page.goto("https://rahulshettyacademy.com/client");
   await page.locator("button[routerlink*='myorders']").click();
   await page.locator("tbody").waitFor();

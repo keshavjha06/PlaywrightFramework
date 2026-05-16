@@ -24,7 +24,7 @@ test("@web browser context playwright test", async ({ browser }) => {
   await userName.fill("");
   await userName.fill("rahulshettyacademy");
   //race condition
-  await Promise.all([page.waitForNavigation(), signIn.click()]);
+  await Promise.all([page.waitForURL(), signIn.click()]);
 
   //console.log(await cardTitles.first().textContent());
   // console.log(await cardTitles.nth(1).textContent());
