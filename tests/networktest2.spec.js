@@ -1,33 +1,18 @@
-import { test, expect, request } from "@playwright/test";
-import { ApiUtils } from "../utils/apiutils";
-const loginPayload = {
-  userEmail: "rahulshetty@gmail.com",
-  userPassword: "Iamking@00",
-};
-const orderPayload = {
-  orders: [{ country: "Cuba", productOrderedId: "6262e95ae26b7e1a10e89bf0" }],
-};
-const fakePayLoadOrders = { data: [], message: "No Orders" };
-let response;
-test.beforeAll(async () => {
-  const apiContext = await request.newContext();
-  const apiUtils = new ApiUtils(apiContext, loginPayload);
-  response = await apiUtils.createOrder(orderPayload);
-});
-//create order is success
-test("place the order", async ({ page }) => {
-  page.addInitScript((value) => {
-    window.localStorage.setItem("token", value);
-  }, response.token);
+import { test, expect } from "@playwright/test";
+
+test("Security test request intercept", async ({ page }) => {
+  //login and reach orders page
   await page.goto("https://rahulshettyacademy.com/client");
+  await page.locator("#userEmail").fill("anshikaw@gmail.com");
+  await page.locator("#userPassword").fill("Learning@830$3mK3");
+  await page.locator("[value='Login']").click();
+  await page.waitForLoadState('networkidle');
+  await page.locator(".card-body b").first().waitFor();
+
   await page.locator("button[routerlink*='myorders']").click();
-  await page.route(
-    "https://www.rahulshettyacademy.com/api/ecom/order/get-orders-details?id=638cc34e03841e9c9a4a0644",
-    (route) =>
-      route.continue({
-        url: "https://rahulshettyacademy.com/api/ecom/order/get-orders-details?id=638e23ea03841e9c9a4ad11e",
-      })
-  );
+  await page.route("https://rahulshettyacademy.com/api/ecom/order/get-orders-details?id=*",
+    route => route.continue({ url: 'https://rahulshettyacademy.com/api/ecom/order/get-orders-details?id=621661f884b053f6765465b6' }))
   await page.locator("button:has-text('View')").first().click();
-  //await page.pause();
-});
+  // await page.pause()
+  await expect(page.locator("p").last()).toHaveText("You are not authorize to view this order");
+})

@@ -1,34 +1,31 @@
 import { test, expect } from "@playwright/test";
 
-test("@web browser context playwright test", async ({ browser }) => {
+test("@Web Browser Context-Validating Error Login", async ({ browser }) => {
   const context = await browser.newContext();
   const page = await context.newPage();
-  page.route("**/*.css", (route) => route.abort());
-  page.route("**/*.{jpg,png,jpeg}", (route) => route.abort());
-  const userName = page.locator("#username");
+  //  page.route('**/*.css', route => route.abort()); // block css
+  //  page.route('**/*.{jpg,png,jpeg}', route => route.abort()); // block images
+  const userName = page.locator('#username');
   const signIn = page.locator("#signInBtn");
   const cardTitles = page.locator(".card-body a");
-  page.on("request", (request) => console.log(request.url()));
-  page.on("response", (response) =>
-    console.log(response.url(), response.status())
-  );
+  page.on('request', request => console.log(request.url()));
+  page.on('response', response => console.log(response.url(), response.status())); // logs all the request and response that are made during the test execution
   await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
   console.log(await page.title());
-  //css
+  //css 
   await userName.fill("rahulshetty");
-  await page.locator("[type='password']").fill("learning");
+  await page.locator("[type='password']").fill("Learning@830$3mK2");
   await signIn.click();
   console.log(await page.locator("[style*='block']").textContent());
-  await expect(page.locator("[style*='block']")).toContainText("Incorrect");
-  //type & fill to enter text in input fields
+  await expect(page.locator("[style*='block']")).toContainText('Incorrect');
+  //type - fill
   await userName.fill("");
   await userName.fill("rahulshettyacademy");
-  //race condition
-  await Promise.all([page.waitForURL(), signIn.click()]);
-
-  //console.log(await cardTitles.first().textContent());
-  // console.log(await cardTitles.nth(1).textContent());
+  await signIn.click();
+  console.log(await cardTitles.first().textContent());
+  console.log(await cardTitles.nth(1).textContent());
   const allTitles = await cardTitles.allTextContents();
+
   console.log(allTitles);
 });
 
