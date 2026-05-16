@@ -3,7 +3,7 @@ import { devices } from "@playwright/test";
 
 const config = {
   testDir: "./tests",
-  retries: 2,
+  retries: 0,
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {

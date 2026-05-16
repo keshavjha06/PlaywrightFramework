@@ -12,8 +12,8 @@ test.beforeAll(async ({ browser }) => {
   await context.storageState({ path: "state.json" });
   webContext = await browser.newContext({ storageState: "state.json" });
 });
+
 test("Client App login", async () => {
-  const email = "";
   const productName = "zara coat 3";
   const page = await webContext.newPage();
   await page.goto("https://rahulshettyacademy.com/client");
@@ -23,19 +23,16 @@ test("Client App login", async () => {
   //zara coat 3
   const count = await products.count();
   console.log("count: " + count);
-  for (let i = 0; i < count; i++) {
-    if ((await products.nth(i).locator("b").textContent()) === productName) {
-      //add to cart
-      await products.nth(i).locator("text= Add To Cart").click();
-      break;
-    }
-  }
+  await products
+    .filter({ hasText: productName })
+    .locator("text= Add To Cart")
+    .click();
   await page.locator("[routerlink*='cart']").click();
   await page.locator("div li").first().waitFor(); //waitFor() method is used to wait until items are loaded
   const bool = await page.locator("h3:has-text('zara coat 3')").isVisible();
   expect(bool).toBeTruthy();
   await page.locator("text=Checkout").click();
-  await page.locator("[placeholder*='Country']").fill("ind", { delay: 100 }); //will add delay while typing
+  await page.locator("[placeholder*='Country']").pressSequentially("ind");
   const dropdown = page.locator(".ta-results");
   await dropdown.waitFor();
   let optionsCount = await dropdown.locator("button").count();
@@ -70,11 +67,8 @@ test("Client App login", async () => {
 });
 
 test("@API Test case 2", async () => {
-  const email = "";
-  const productName = "zara coat 3";
   const page = await webContext.newPage();
   await page.goto("https://rahulshettyacademy.com/client");
-  const products = page.locator(".card-body");
   const titles = await page.locator(".card-body b").allTextContents();
   console.log(titles);
 });
