@@ -1,4 +1,4 @@
-class DashboardPage {
+export class DashboardPage {
   constructor(page) {
     this.page = page;
     this.products = page.locator(".card-body");
@@ -30,4 +30,3 @@ class DashboardPage {
     await this.cart.click();
   }
 }
-export default { DashboardPage };

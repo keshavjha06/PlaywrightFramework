@@ -3,7 +3,7 @@ import { DashboardPage } from "./dashboard-page";
 import { OrdersHistoryPage } from "./ordershistory-page";
 import { OrdersReviewPage } from "./orderreviews-page";
 import { CartPage } from "./cart-page";
-class POManager {
+export class POManager {
   constructor(page) {
     this.page = page;
     this.loginPage = new LoginPage(this.page);
@@ -32,4 +32,3 @@ class POManager {
     return this.ordersReviewPage;
   }
 }
-export default { POManager };

@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-class CartPage {
+export class CartPage {
   constructor(page) {
     this.page = page;
     this.cartProducts = page.locator("div li").first();
@@ -23,4 +23,3 @@ class CartPage {
     return this.page.locator("h3:has-text('" + productName + "')");
   }
 }
-module.exports = { CartPage };

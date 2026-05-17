@@ -1,6 +1,6 @@
-const { expect } = require("@playwright/test");
+import { expect } from "@playwright/test";
 
-class OrdersReviewPage {
+export class OrdersReviewPage {
   constructor(page) {
     this.page = page;
     this.country = page.locator("[placeholder*='Country']");
@@ -35,5 +35,3 @@ class OrdersReviewPage {
     return await this.orderId.textContent();
   }
 }
-
-export default { OrdersReviewPage };

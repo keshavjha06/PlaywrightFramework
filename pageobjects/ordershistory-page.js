@@ -1,4 +1,4 @@
-class OrdersHistoryPage {
+export class OrdersHistoryPage {
   constructor(page) {
     this.page = page;
     this.ordersTable = page.locator("tbody");
@@ -20,4 +20,3 @@ class OrdersHistoryPage {
     return await this.orderdIdDetails.textContent();
   }
 }
-export default { OrdersHistoryPage };
