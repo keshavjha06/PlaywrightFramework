@@ -24,5 +24,8 @@
     "@playwright/test": "^1.59.1",
     "allure-playwright": "^3.7.1",
     "dotenv": "^17.4.2"
+  },
+  "dependencies": {
+    "exceljs": "^4.4.0"
   }
 }
