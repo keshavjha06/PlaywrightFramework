@@ -7,7 +7,8 @@
     "Regression": "npx playwright test",
     "WebTests": "npx playwright test --grep @web",
     "APITests": "npx playwright test --grep @API",
-    "SafariNewConfig": "npx playwright test --config playwright.config1.js --project=safari"
+    "SafariNewConfig": "npx playwright test --config playwright.config1.js --project=safari",
+    "CucumberRegression": "npx cucumber-js --tags '@Regression' --retry 1  --exit --format html:cucumber-report.html"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@cucumber/cucumber": "^12.9.0",
     "exceljs": "^4.4.0"
   }
 }

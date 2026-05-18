@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { customtest } from '../utils/test-base';
-import { POManager } from '../pageobjects/po-manager';
+import { customtest } from '../utils/test-base.js';
+import { POManager } from '../pageobjects/po-manager.js';
 
 //Json->string->js object
 const dataset = JSON.parse(JSON.stringify(require("../utils/placeorder-testdata.json")));
