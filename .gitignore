@@ -10,3 +10,4 @@ node_modules/
 /allure-report/
 .env
 *.html
+state.json

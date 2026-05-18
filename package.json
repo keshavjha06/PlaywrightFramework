@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/keshavjha06/PlaywrightFramework#readme",
   "devDependencies": {
+    "@azure/identity": "^4.13.1",
+    "@azure/playwright": "^1.1.5",
     "@playwright/test": "^1.59.1",
     "@types/node": "^25.8.0",
     "allure-playwright": "^3.7.1",
