@@ -1,31 +1,79 @@
 # PlaywrightFramework
 
-## Introduction
+## Overview
 
-Playwright is a framework for Web Testing and Automation. It allows testing Chromium, Firefox and WebKit with a single API. Playwright is built to enable cross-browser web automation that is ever-green, capable, reliable and fast.
+This repository is a Playwright-based automation framework implemented using JavaScript and TypeScript with the Page Object Model (POM) design pattern. It contains both Playwright test suites and Cucumber feature-based tests.
 
-This Test Automation Framework is created using JavaScript + Playwright + Page Object Model(POM).
-Which can be used across different web based applications.It is used to make the code more readable, maintainable and reusable.
+The framework is designed for web UI automation and supports cross-browser execution using Playwright.
 
-## Technologies/Tools used in building the framework
+## Key features
 
-- VS Code - IDE
-- Playwright - framework for Web Testing and Automation
-- JavaScript - Programming language
-- Allure Reports - Reporting framework
-- GitHub - Version control
-- Jenkins - CI/CD
+- Playwright test automation with `@playwright/test`
+- Page Object Model implemented in `pageobjects/` and `pageobjects_ts/`
+- Cucumber feature execution via `@cucumber/cucumber`
+- HTML reporting via Playwright's built-in reporter
+- Screenshots and trace capture configured for debugging failures
+- Support for browser-specific projects in `playwright.config1.js`
 
-## Steps to clone execute the tests
+## Repository structure
 
-`git clone https://github.com/keshavjha06/PlaywrightFramework.git`<br/>
-`cd PlaywrightFramework`<br/>
-`npx playwright test`<br/>
+- `tests/` - Playwright test files (`*.spec.js`, plus some `*.ts` test files)
+- `pageobjects/` - JavaScript Page Object Model classes
+- `pageobjects_ts/` - TypeScript Page Object Model classes
+- `features/` - Cucumber feature files and step definitions
+- `playwright-report/` - generated Playwright HTML reports and artifacts
+- `test-results/` - saved test result directories
+- `cucumber.js` - Cucumber CLI configuration
+- `playwright.config.js` - default Playwright configuration
+- `playwright.config1.js` - alternate Playwright configuration with Safari/WebKit and Chrome projects
 
-## Screenshot:
+## Installation
 
-- Take Screenshots On test failures Method will automatically capture & store the screenshots under /playwright-report directory.
+```bash
+git clone https://github.com/keshavjha06/PlaywrightFramework.git
+cd PlaywrightFramework
+npm install
+npx playwright install
+```
 
-## Reporting:
+> If you only need the browser binaries for your default config, run `npx playwright install chromium firefox webkit`.
 
-- The framework produce index.html report. It resides in the playwright-report folder.This reports gives the detailed information like screenshots,traces. On clicking these will display detailed descriptions of execution.
+## Available commands
+
+### Run Playwright tests
+
+- `npm run Regression` - execute all Playwright tests
+- `npm run WebTests` - execute Playwright tests tagged with `@web`
+- `npm run APITests` - execute Playwright tests tagged with `@API`
+- `npm run SafariNewConfig` - execute tests using `playwright.config1.js` on the Safari/WebKit project
+
+### Run Cucumber tests
+
+- `npm run CucumberRegression` - execute Cucumber scenarios tagged `@Regression` and generate `cucumber-report.html`
+
+### Example direct commands
+
+```bash
+npx playwright test
+npx playwright test tests/example.spec.js
+npx cucumber-js --tags '@Regression' --retry 1 --exit --format html:cucumber-report.html
+```
+
+## Reporting and debug artifacts
+
+- Playwright HTML report is generated in `playwright-report/`
+- Screenshots are captured on failures
+- Trace collection is enabled for deeper debugging
+- Cucumber generates `cucumber-report.html`
+
+## Notes
+
+- Page object classes are available both in JavaScript and TypeScript.
+- The current default Playwright test pattern is `**/*.spec.js`, so TypeScript specs may require additional configuration to execute.
+- Use Cucumber feature files in `features/` for BDD-style scenarios.
+
+## Useful links
+
+- Playwright docs: https://playwright.dev
+- Cucumber docs: https://cucumber.io
+- Allure Playwright: https://github.com/playwright-community/allure-playwright
